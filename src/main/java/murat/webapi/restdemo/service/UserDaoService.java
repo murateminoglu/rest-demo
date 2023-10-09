@@ -17,7 +17,7 @@ public class UserDaoService {
 	private static List<User> users = new ArrayList<User>();
 
 	private static int usersCount = 3;
-	@Autowired
+
 	public UserDaoService() {
 		users.add(new User(1, "Murat Emin", new Date()));
 		users.add(new User(2, "Martin Luther", new Date()));
@@ -55,15 +55,6 @@ public class UserDaoService {
 		users.removeIf(user -> user.getId() == id);
 	}
 
-	public void deleteeUser(Integer id) {
-		Iterator<User> iterator = users.iterator();
-		while (iterator.hasNext()) {
-			User user = iterator.next();
-			if (user.getId() == id) {
-				iterator.remove();
-			}
-		}
-	}
 
 	public User updateUser(User updatedUser) {
 		for (int i = 0; i < users.size(); i++) {
