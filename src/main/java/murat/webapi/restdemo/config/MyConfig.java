@@ -7,8 +7,7 @@ import org.springframework.context.annotation.Configuration;
 public class MyConfig {
 
     @Bean
-    public Integer integerBean() {
-        return new Integer(0); // You can initialize it with the desired value.
+    public Integer integerBean() { return 0;
     }
     @Bean
     public String stringBean() {
