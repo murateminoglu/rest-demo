@@ -39,7 +39,7 @@ public class UserDaoServiceImpl implements UserDaoService {
                 .collect(Collectors.toList());
     }
 
-    @Override
+
     public UserDto setUser(UserDto userDto) {
         User user= new User();
         user.setName(userDto.getName());
@@ -57,22 +57,21 @@ public class UserDaoServiceImpl implements UserDaoService {
 
     public UserDto getUser(Integer id) {
         User user = userRepository.findById(id).orElse(null);
-        return user != null ? convertToUserDto(user) : null;
+        if(user !=null){
+            convertToUserDto(user);
+        }
+        return convertToUserDto(user);
     }
 
     public void deleteUser(Integer id) {
         userRepository.deleteById(id);
     }
 
-    @Override
+
     public UserDto updateUser(@PathVariable Integer id,@RequestBody UserDto updatedUserDto) {
         Optional<User> userOptional = userRepository.findById(id);
         if (userOptional.isPresent()) {
             User existingUser = userOptional.get();
-
-            if (updatedUserDto.getId() != null) {
-                existingUser.setId(updatedUserDto.getId());
-            }
 
             if (updatedUserDto.getName() != null) {
                 existingUser.setName(updatedUserDto.getName());
@@ -81,7 +80,6 @@ public class UserDaoServiceImpl implements UserDaoService {
             if (updatedUserDto.getBirthDay() != null) {
                 existingUser.setBirthDay(updatedUserDto.getBirthDay());
             }
-
 
             User updatedUser = userRepository.save(existingUser);
 

@@ -62,6 +62,6 @@ public class UserController {
 
 	@PutMapping("{id}")
 	public ResponseEntity<UserDto> updateUser(@PathVariable int id, @RequestBody UserDto updatedUserDto) {
-		return new ResponseEntity<>(userDaoService.setUser(updatedUserDto),OK);
+		return new ResponseEntity<>(userDaoService.updateUser(id,updatedUserDto),OK);
 	}
 }
