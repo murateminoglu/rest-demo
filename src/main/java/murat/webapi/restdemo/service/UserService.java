@@ -9,7 +9,7 @@ import murat.webapi.restdemo.entity.User;
 
 
 
-public interface UserDaoService {
+public interface UserService {
 	UserDto convertToUserDto(User user);
 	List<UserDto> getAll();
 	UserDto setUser(UserDto userDto);

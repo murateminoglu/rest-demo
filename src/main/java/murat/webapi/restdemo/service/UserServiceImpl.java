@@ -1,20 +1,16 @@
-package murat.webapi.restdemo.userserviceimpl;
+package murat.webapi.restdemo.service;
 
 import lombok.RequiredArgsConstructor;
 import murat.webapi.restdemo.dto.UserDto;
 import murat.webapi.restdemo.entity.User;
 import murat.webapi.restdemo.repository.UserRepository;
-import murat.webapi.restdemo.service.UserDaoService;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
-public class UserDaoServiceImpl implements UserDaoService {
+public class UserServiceImpl implements UserService {
 
 
     private final UserRepository userRepository;
@@ -24,7 +20,7 @@ public class UserDaoServiceImpl implements UserDaoService {
     public UserDto convertToUserDto(User user){
 
         UserDto userDTO = new UserDto();
-        userDTO.setId(user.getId());
+        //userDTO.setId(user.getId());
         userDTO.setName(user.getName());
         userDTO.setBirthDay(user.getBirthDay());
         return userDTO;
@@ -46,7 +42,7 @@ public class UserDaoServiceImpl implements UserDaoService {
         User savedUser = userRepository.save(user);
 
         UserDto savedUserDto = new UserDto();
-        savedUserDto.setId(savedUser.getId());
+        //savedUserDto.setId(savedUser.getId());
         savedUserDto.setName(savedUser.getName());
         savedUserDto.setBirthDay(savedUser.getBirthDay());
 
@@ -66,7 +62,7 @@ public class UserDaoServiceImpl implements UserDaoService {
     }
 
 
-    public UserDto updateUser(@PathVariable Integer id,@RequestBody UserDto updatedUserDto) {
+    public UserDto updateUser( Integer id, UserDto updatedUserDto) {
         Optional<User> userOptional = userRepository.findById(id);
         if (userOptional.isPresent()) {
             User existingUser = userOptional.get();

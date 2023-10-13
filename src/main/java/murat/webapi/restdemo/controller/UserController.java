@@ -16,8 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import murat.webapi.restdemo.entity.User;
-import murat.webapi.restdemo.service.UserDaoService;
+import murat.webapi.restdemo.service.UserService;
 
 import static org.springframework.http.HttpStatus.*;
 
@@ -27,41 +26,36 @@ import static org.springframework.http.HttpStatus.*;
 @AllArgsConstructor
 public class UserController {
 
-	@Autowired
-	public UserDaoService userDaoService;
-	// method
-	// url/...
+    @Autowired
+    public UserService userDaoService;
 
-	@GetMapping
-	public ResponseEntity<List<UserDto>> getUsers() {
-		List<UserDto> users = userDaoService.getAll();
+    @GetMapping
+    public ResponseEntity<List<UserDto>> getUsers() {
+        List<UserDto> users = userDaoService.getAll();
 
-		return new ResponseEntity<>(users,OK);
-	}
+        return new ResponseEntity<>(users, OK);
+    }
 
-	@GetMapping("{id}")
-	public UserDto getUser(@PathVariable int id) {
-		return userDaoService.getUser(id);
-	}
+    @GetMapping("{id}")
+    public UserDto getUser(@PathVariable Integer id) {
+        return userDaoService.getUser(id);
+    }
 
-	@PostMapping
-	public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
-		try {
-			UserDto createdUser = userDaoService.setUser(userDto);
-			return new ResponseEntity<>(createdUser, CREATED);
-		} catch (Exception e) {
+    @PostMapping
+    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
 
-			return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
-		}
-	}
+        UserDto createdUser = userDaoService.setUser(userDto);
+        return new ResponseEntity<>(createdUser, CREATED);
 
-	@DeleteMapping("{id}")
-	public void deleteUser(@PathVariable int id) {
-		userDaoService.deleteUser(id);
-	}
+    }
 
-	@PutMapping("{id}")
-	public ResponseEntity<UserDto> updateUser(@PathVariable int id, @RequestBody UserDto updatedUserDto) {
-		return new ResponseEntity<>(userDaoService.updateUser(id,updatedUserDto),OK);
-	}
+    @DeleteMapping("{id}")
+    public void deleteUser(@PathVariable Integer id) {
+        userDaoService.deleteUser(id);
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<UserDto> updateUser(@PathVariable Integer id,@RequestBody  UserDto updatedUserDto) {
+        return new ResponseEntity<>(userDaoService.updateUser(id, updatedUserDto), OK);
+    }
 }

@@ -1,5 +1,5 @@
-CREATE TABLE user_s (
+CREATE TABLE user (
                       id BIGINT PRIMARY KEY AUTO_INCREMENT ,
                       name VARCHAR(255) NOT NULL,
-                      birthDay Date
+                      birth_date Date
 );
