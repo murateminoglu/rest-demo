@@ -5,6 +5,7 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import murat.webapi.restdemo.dto.UserDto;
+import org.hibernate.persister.collection.mutation.UpdateRowsCoordinatorNoOp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,35 +28,36 @@ import static org.springframework.http.HttpStatus.*;
 public class UserController {
 
     @Autowired
-    public UserService userDaoService;
+    public UserService userService;
 
     @GetMapping
     public ResponseEntity<List<UserDto>> getUsers() {
-        List<UserDto> users = userDaoService.getAll();
+        List<UserDto> users = userService.getAll();
 
         return new ResponseEntity<>(users, OK);
     }
 
+
     @GetMapping("{id}")
     public UserDto getUser(@PathVariable Integer id) {
-        return userDaoService.getUser(id);
+        return userService.getUser(id);
     }
 
     @PostMapping
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
 
-        UserDto createdUser = userDaoService.setUser(userDto);
+        UserDto createdUser = userService.setUser(userDto);
         return new ResponseEntity<>(createdUser, CREATED);
 
     }
 
     @DeleteMapping("{id}")
     public void deleteUser(@PathVariable Integer id) {
-        userDaoService.deleteUser(id);
+        userService.deleteUser(id);
     }
 
     @PutMapping("{id}")
     public ResponseEntity<UserDto> updateUser(@PathVariable Integer id,@RequestBody  UserDto updatedUserDto) {
-        return new ResponseEntity<>(userDaoService.updateUser(id, updatedUserDto), OK);
+        return new ResponseEntity<>(userService.updateUser(id, updatedUserDto), OK);
     }
 }

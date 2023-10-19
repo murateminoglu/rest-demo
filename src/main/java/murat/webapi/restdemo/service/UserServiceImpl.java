@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
     public UserDto convertToUserDto(User user){
 
         UserDto userDTO = new UserDto();
-        //userDTO.setId(user.getId());
+        userDTO.setId(user.getId());
         userDTO.setName(user.getName());
         userDTO.setBirthDay(user.getBirthDay());
         return userDTO;
@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
         User savedUser = userRepository.save(user);
 
         UserDto savedUserDto = new UserDto();
-        //savedUserDto.setId(savedUser.getId());
+        savedUserDto.setId(savedUser.getId());
         savedUserDto.setName(savedUser.getName());
         savedUserDto.setBirthDay(savedUser.getBirthDay());
 

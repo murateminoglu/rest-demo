@@ -1,13 +1,12 @@
 package murat.webapi.restdemo.entity;
 
-import jakarta.persistence.*;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import lombok.Data;
-import lombok.Getter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +16,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "user")
-@Getter
 @Service
-@Data
 public class User {
 	@jakarta.persistence.Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,9 +38,19 @@ public class User {
 		this.birthDay = birthDay;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public Integer getId() {
+		return id;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public Date getBirthDay() {
+		return birthDay;
+	}
+
+
 
 	public void setName(String name) {
 		this.name = name;
