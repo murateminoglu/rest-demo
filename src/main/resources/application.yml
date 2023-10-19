@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/muratsql
+    username: root
+    password: 1907Fb.1907.
+  flyway:
+    enabled: true
+    repair: true

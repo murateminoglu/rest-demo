@@ -1,31 +1,35 @@
 package murat.webapi.restdemo.entity;
 
-import java.util.Date;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.util.Date;
+
+
+@Entity
+@Table(name = "user")
 @Service
 public class User {
-	private Integer id;
-	private String name;
-	private Date birthDay;
+	@jakarta.persistence.Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id") private Integer id;
+	@Column (name = "name") private String name;
+	@Column (name = "birth_date") private Date birthDay;
 
-	private static User instance;
-
-	public static User getInstance() {
-		if (instance == null) {
-			instance = new User();
-		}
-		return instance;
-	}
 
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	@Autowired
 	public User(Integer id, String name, Date birthDay) {
 		super();
@@ -38,29 +42,22 @@ public class User {
 		return id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
 	public String getName() {
 		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public Date getBirthDay() {
 		return birthDay;
 	}
 
-	public void setBirthDay(Date birthDay) {
-		this.birthDay = birthDay;
+
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", birthDay=" + birthDay + "]";
+	public void setBirthDay(Date birthDay) {
+		this.birthDay = birthDay;
 	}
 
 }

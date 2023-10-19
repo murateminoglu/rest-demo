@@ -1,0 +1,1 @@
+INSERT INTO user ( name, birth_date) VALUES ('murat','2023.01.01')
